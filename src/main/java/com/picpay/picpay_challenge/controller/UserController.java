@@ -1,6 +1,7 @@
 package com.picpay.picpay_challenge.controller;
 
 import com.picpay.picpay_challenge.controller.response.UserResponse;
+import com.picpay.picpay_challenge.mapper.UserMapper;
 import com.picpay.picpay_challenge.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,10 @@ public class UserController {
     private final UserService userService;
 
     public ResponseEntity<List<UserResponse>>findAllUsers(){
-        return ResponseEntity.ok(userService.findAll());
+        return ResponseEntity.ok(userService.findAll()
+                .stream()
+                .map(UserMapper::toUserResponse)
+                .toList());
     }
 
 
