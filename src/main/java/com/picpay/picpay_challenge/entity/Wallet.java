@@ -23,4 +23,11 @@ public class Wallet {
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
     private User user;
+
+    @PrePersist
+    public void initializerBalance(){
+        if (balance == null){
+            this.balance = BigDecimal.ZERO;
+        }
+    }
 }
