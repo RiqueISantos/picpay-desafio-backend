@@ -1,5 +1,6 @@
 package com.picpay.picpay_challenge.entity;
 
+import com.picpay.picpay_challenge.enums.TypeUser;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,20 +10,21 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @Column(length = 300)
-    String nomeCompleto;
+    private String fullName;
 
-    @Column(unique = true)
-    String cpf;
+    @Column(unique = true, length = 11)
+    private String cpf;
 
-    @Column(unique = true)
-    String email;
+    @Column(unique = true, length = 100)
+    private String email;
 
-    String senha;
+    private String password;
+
+    private TypeUser typeUser;
 }
