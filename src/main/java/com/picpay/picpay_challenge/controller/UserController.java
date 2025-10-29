@@ -1,6 +1,7 @@
 package com.picpay.picpay_challenge.controller;
 
 import com.picpay.picpay_challenge.controller.response.UserResponse;
+import com.picpay.picpay_challenge.entity.User;
 import com.picpay.picpay_challenge.mapper.UserMapper;
 import com.picpay.picpay_challenge.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -29,9 +30,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> findUserById(@PathVariable Long id){
-        return ResponseEntity.ok(userService.findUserById(id)
-                .map(UserMapper::toUserResponse)
-                .orElseThrow(() -> new EntityNotFoundException("Usuário com ID " + id + " não existe!")));
+        return userService.findUserById(id)
+                .map(user -> ResponseEntity.ok(UserMapper.toUserResponse(user)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
