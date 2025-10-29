@@ -5,10 +5,7 @@ import com.picpay.picpay_challenge.controller.response.UserResponse;
 import com.picpay.picpay_challenge.entity.User;
 import com.picpay.picpay_challenge.mapper.UserMapper;
 import com.picpay.picpay_challenge.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
