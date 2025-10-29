@@ -34,7 +34,7 @@ public class UserService {
             user.setId(id);
             return userRepository.save(user);
         }
-        throw new EntityNotFoundException("Usuário com ID " + id + " não existe!");
+        return null;
     }
 
     public void delete(Long id){

@@ -1,16 +1,16 @@
 package com.picpay.picpay_challenge.controller;
 
+import com.picpay.picpay_challenge.controller.request.UserRequest;
 import com.picpay.picpay_challenge.controller.response.UserResponse;
 import com.picpay.picpay_challenge.entity.User;
 import com.picpay.picpay_challenge.mapper.UserMapper;
 import com.picpay.picpay_challenge.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,4 +35,10 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
+    @PostMapping
+    public ResponseEntity<UserResponse> saveUser(@RequestBody UserRequest userRequest){
+        User user = userService.save(UserMapper.toUser(userRequest));
+        return ResponseEntity.ok(UserMapper.toUserResponse(user));
+    }
 }
