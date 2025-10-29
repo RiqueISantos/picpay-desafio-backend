@@ -1,6 +1,7 @@
 package com.picpay.picpay_challenge.service;
 
 import com.picpay.picpay_challenge.entity.User;
+import com.picpay.picpay_challenge.exceptions.UserNotFoundException;
 import com.picpay.picpay_challenge.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -28,13 +29,11 @@ public class UserService {
     }
 
     public User updateUser(User user, Long id){
-        Optional<User> savedUser = findUserById(id);
+        User existingUser = findUserById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
 
-        if(savedUser.isPresent()){
-            user.setId(id);
-            return userRepository.save(user);
-        }
-        return null;
+        user.setId(id);
+        return userRepository.save(user);
     }
 
     public void delete(Long id){

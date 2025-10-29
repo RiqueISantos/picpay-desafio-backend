@@ -3,6 +3,7 @@ package com.picpay.picpay_challenge.controller;
 import com.picpay.picpay_challenge.controller.request.UserRequest;
 import com.picpay.picpay_challenge.controller.response.UserResponse;
 import com.picpay.picpay_challenge.entity.User;
+import com.picpay.picpay_challenge.exceptions.UserNotFoundException;
 import com.picpay.picpay_challenge.mapper.UserMapper;
 import com.picpay.picpay_challenge.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class UserController {
     public ResponseEntity<UserResponse> findUserById(@PathVariable Long id){
         return userService.findUserById(id)
                 .map(user -> ResponseEntity.ok(UserMapper.toUserResponse(user)))
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
 
