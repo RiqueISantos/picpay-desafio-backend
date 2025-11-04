@@ -4,7 +4,6 @@ import com.picpay.picpay_challenge.controller.request.UserRequest;
 import com.picpay.picpay_challenge.controller.response.UserResponse;
 import com.picpay.picpay_challenge.entity.User;
 import lombok.experimental.UtilityClass;
-import org.springframework.stereotype.Component;
 
 @UtilityClass
 public class UserMapper {
