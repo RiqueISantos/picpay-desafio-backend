@@ -10,7 +10,7 @@ Projeto desenvolvido como solução para o desafio **PicPay Simplificado**, impl
 
 ## Tecnologias e Ferramentas
 
-Este projeto de backend utiliza o ecossistema Java/Spring Boot e segue uma arquitetura baseada em microserviços.
+Este projeto de backend foi desenvolvido com Java/Spring Boot, adotando uma arquitetura monolítica estruturada em camadas, que separa claramente responsabilidades entre controle, serviços, mapeamento e persistência de dados.
 
 | Categoria | Tecnologia | Versão/Detalhe |
 | :--- | :--- | :--- |
@@ -129,3 +129,13 @@ com.picpay.picpay_challenge
  └── service             # Regras de negócio, lógica e orquestração
 
  ```
+
+## 📖 Documentação Interativa (Swagger UI)
+
+Este projeto utiliza a biblioteca **Springdoc OpenAPI** para gerar a documentação da API em conformidade com a especificação OpenAPI 3.0.
+
+Após rodar a aplicação Spring Boot (Passo 2 de "Rodando o Projeto"), você pode acessar a interface interativa do Swagger UI para testar e visualizar todos os endpoints:
+
+👉 **URL do Swagger UI:** `http://localhost:8080/swagger-ui.html`.
+
+---
