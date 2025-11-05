@@ -7,7 +7,6 @@ import com.picpay.picpay_challenge.entity.User;
 import com.picpay.picpay_challenge.entity.Wallet;
 import com.picpay.picpay_challenge.enums.TypeUser;
 import com.picpay.picpay_challenge.repository.TransactionRepository;
-import com.picpay.picpay_challenge.repository.WalletRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,6 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final AuthorizerClient authorizerClient;
     private final NotificationClient notificationClient;
-    private final WalletRepository walletRepository;
 
     @Transactional
     public void transfer(Transaction transaction){
