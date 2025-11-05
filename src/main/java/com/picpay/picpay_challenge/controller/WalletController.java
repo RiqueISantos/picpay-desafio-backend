@@ -3,7 +3,6 @@ package com.picpay.picpay_challenge.controller;
 import com.picpay.picpay_challenge.controller.request.WalletRequest;
 import com.picpay.picpay_challenge.controller.response.WalletResponse;
 import com.picpay.picpay_challenge.entity.Wallet;
-import com.picpay.picpay_challenge.exceptions.UserNotFoundException;
 import com.picpay.picpay_challenge.mapper.WalletMapper;
 import com.picpay.picpay_challenge.service.WalletService;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +25,8 @@ public class WalletController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<WalletResponse> findByUserId(@PathVariable Long id){
-        return walletService.getWalletByIdUser(id)
-                .map(wallet -> ResponseEntity.ok(WalletMapper.toWalletResponse(wallet)))
-                .orElseThrow(() -> new UserNotFoundException(id));
+        Wallet existingWallet = walletService.getWalletByIdUser(id);
+        return ResponseEntity.ok(WalletMapper.toWalletResponse(existingWallet));
     }
 
 }
